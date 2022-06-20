@@ -10,6 +10,10 @@ declare module 'styled-components'{
         main: string
         dark: string
       },
+      gray:{
+        900: string,
+        200: string,
+      }
     }
   }
 
@@ -22,6 +26,10 @@ declare module 'styled-components'{
         main: string
         dark: string
       },
+      gray:{
+        900: string,
+        200: string,
+      }
     }
   }
 }
