@@ -25,6 +25,7 @@
     "react/jsx-one-expression-per-line": [1, { "allow": "literal" }],
     "import/no-unresolved": 0,
     "import/extensions": [0, "never"],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/require-default-props": "off"
   }
 }
