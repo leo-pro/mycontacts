@@ -13,7 +13,12 @@ declare module 'styled-components'{
       gray:{
         900: string,
         200: string,
-      }
+      },
+      danger: {
+        light: string,
+        main: string,
+        dark: string,
+      },
     }
   }
 
@@ -29,7 +34,12 @@ declare module 'styled-components'{
       gray:{
         900: string,
         200: string,
-      }
+      },
+      danger: {
+        light: string,
+        main: string,
+        dark: string,
+      },
     }
   }
 }
