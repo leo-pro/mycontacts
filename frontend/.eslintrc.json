@@ -26,6 +26,9 @@
     "import/no-unresolved": 0,
     "import/extensions": [0, "never"],
     "import/prefer-default-export": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "no-unused-vars": "warn",
+    "no-empty":"off",
+    "no-shadow":"warn"
   }
 }
