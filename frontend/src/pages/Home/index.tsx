@@ -10,7 +10,7 @@ import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 import { Loader } from '../../components/Loader';
-import delay from '../../utils/delay';
+import ContactsService, { OrderBy } from '../../services/ContactsService';
 
 interface Contact{
   id: string;
@@ -19,11 +19,6 @@ interface Contact{
   phone: string;
   category_name: string;
   category_id: string;
-}
-
-enum OrderBy {
-  ASC = 'asc',
-  DESC = 'desc'
 }
 
 export default function Home() {
@@ -41,19 +36,21 @@ export default function Home() {
   );
 
   useEffect(() => {
-    setIsLoading(true);
+    async function loadContacts() {
+      try {
+        setIsLoading(true);
 
-    fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
-      .then(async (response) => {
-        await delay(1000);
+        const contactsList = await ContactsService.listContacts(orderBy);
 
-        const json = await response.json();
-        setContacts(json);
-      })
-      .catch((error) => console.log(error))
-      .finally(() => {
+        setContacts(contactsList);
+      } catch (error) {
+        console.log('Error', error);
+      } finally {
         setIsLoading(false);
-      });
+      }
+    }
+
+    loadContacts();
   }, [orderBy]);
 
   function handleToggleOrderBy() {

@@ -5,6 +5,7 @@
   },
   "extends": [
     "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "airbnb"
   ],
   "parser": "@typescript-eslint/parser",
@@ -17,7 +18,8 @@
   },
   "plugins": [
     "react",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "react-hooks"
   ],
   "rules": {
     "react/jsx-filename-extension": [1, {"extensions": [".ts",".tsx"]}],
@@ -29,6 +31,9 @@
     "react/require-default-props": "off",
     "no-unused-vars": "warn",
     "no-empty":"off",
-    "no-shadow":"warn"
+    "no-shadow":"warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "class-methods-use-this":"off"
   }
 }
