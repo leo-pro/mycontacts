@@ -34,6 +34,7 @@
     "no-shadow":"warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "class-methods-use-this":"off"
+    "class-methods-use-this":"off",
+    "react/no-unescaped-entities": "off"
   }
 }
