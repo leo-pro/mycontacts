@@ -1,3 +1,4 @@
+import { Contact } from '../../interfaces/Contact';
 import HttpClient from '../utils/HttpClient';
 
 export enum OrderBy {
@@ -14,6 +15,10 @@ class ContactsService {
 
   async listContacts(orderBy:OrderBy = OrderBy.ASC) {
     return this.httpClient.get(`/contacts?orderBy=${orderBy}`);
+  }
+
+  async createContact(contact:Contact) {
+    return this.httpClient.post('/contacts', { body: contact });
   }
 }
 

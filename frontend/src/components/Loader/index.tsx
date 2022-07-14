@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import Spinner from '../Spinner';
 import { Overlay } from './styles';
 
 interface LoaderProps {
@@ -20,7 +21,7 @@ export function Loader({ isLoading }:LoaderProps) {
 
   return ReactDOM.createPortal(
     <Overlay>
-      <div className="loader" />
+      <Spinner size={90} />
     </Overlay>,
     newElement,
   );

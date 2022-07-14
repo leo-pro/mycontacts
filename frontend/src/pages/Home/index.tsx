@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import { Link } from 'react-router-dom';
 import {
   ChangeEvent, useCallback, useEffect, useMemo, useState,
 } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -106,7 +106,7 @@ export default function Home() {
           </strong>
         )}
 
-        <a href="/new">Novo contato</a>
+        <Link to="/new">Novo contato</Link>
       </Header>
 
       {hasError

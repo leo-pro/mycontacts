@@ -6,7 +6,7 @@ export default function EditContact() {
     <>
       <PageHeader title="Editar contato" />
 
-      <ContactForm buttonLabel="Salvar alterações" />
+      <ContactForm buttonLabel="Salvar alterações" onSubmit={() => {}} />
     </>
   );
 }
