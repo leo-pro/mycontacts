@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import Button from '../Button';
+import Button from '../Button/';
 import { Container, Footer, Overlay } from './styles';
 
 export interface ModalProps {

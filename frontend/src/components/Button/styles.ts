@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
-interface ButtonProps {
+interface StyledButtonProps {
   danger?: boolean
 }
 
-export default styled.button<ButtonProps>`
+export const StyledButton = styled.button<StyledButtonProps>`
   height: 52px;
   border: none;
   background: ${({ theme }) => theme.colors.primary.main};
@@ -15,6 +15,9 @@ export default styled.button<ButtonProps>`
   font-weight: bold;
   transition: background all 0.2s ease-in;
   padding: 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover{
     background-color: ${({ theme }) => theme.colors.primary.light};
@@ -25,7 +28,7 @@ export default styled.button<ButtonProps>`
   }
 
   &[disabled]{
-    background-color: #CCC;
+    background-color: ${({ theme }) => theme.colors.gray[200]};
     cursor: default;
   }
 
