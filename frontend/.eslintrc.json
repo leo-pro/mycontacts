@@ -37,6 +37,7 @@
     "react/no-unescaped-entities": "off",
     "no-empty": ["error", {"allowEmptyCatch": true}],
     "brace-style": "warn",
-    "react/jsx-props-no-spreading": ["off", {"html": "ignore", "custom": "ignore"}]
+    "react/jsx-props-no-spreading": ["off", {"html": "ignore", "custom": "ignore"}],
+    "react/jsx-no-bind": "off"
   }
 }

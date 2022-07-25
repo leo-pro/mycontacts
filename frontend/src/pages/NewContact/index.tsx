@@ -21,6 +21,7 @@ export default function NewContact() {
       toast({
         type: ToastType.SUCCESS,
         text: 'Contato criado com sucesso!',
+        duration: 3000,
       });
     } catch {
       toast({
