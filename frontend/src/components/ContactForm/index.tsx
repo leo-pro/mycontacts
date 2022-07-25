@@ -1,5 +1,5 @@
 import {
-  ChangeEvent, FormEvent, useEffect, useState,
+  ChangeEvent, FormEvent, forwardRef, useEffect, useImperativeHandle, useState,
 } from 'react';
 import useErrors, { FormFields } from '../../hooks/useErrors';
 
@@ -20,7 +20,13 @@ interface ContactFormProps {
   onSubmit: (formData:Contact) => void;
 }
 
-export function ContactForm({ buttonLabel, onSubmit }:ContactFormProps) {
+export const ContactForm = forwardRef((
+  {
+    buttonLabel,
+    onSubmit,
+  }:ContactFormProps,
+  ref,
+) => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
@@ -34,6 +40,15 @@ export function ContactForm({ buttonLabel, onSubmit }:ContactFormProps) {
   } = useErrors();
 
   const isFormValid = (name && errors.length === 0);
+
+  useImperativeHandle(ref, () => ({
+    setFieldsValues: (contact:Contact) => {
+      setName(contact.name);
+      setEmail(contact.email || '');
+      setPhone(contact.phone || '');
+      setCategoryId(contact.category_id || '');
+    },
+  }), []);
 
   useEffect(() => {
     async function loadCategories() {
@@ -83,6 +98,10 @@ export function ContactForm({ buttonLabel, onSubmit }:ContactFormProps) {
     });
 
     setIsSubmitting(false);
+    setName('');
+    setEmail('');
+    setPhone('');
+    setCategoryId('');
   }
 
   return (
@@ -143,4 +162,4 @@ export function ContactForm({ buttonLabel, onSubmit }:ContactFormProps) {
       </ButtonContainer>
     </Form>
   );
-}
+});
