@@ -1,6 +1,6 @@
-import { ReactNode, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import { ReactNode } from 'react';
 import Button from '../Button';
+import ReactPortal from '../ReactPortal';
 import { Container, Footer, Overlay } from './styles';
 
 interface ModalProps {
@@ -26,42 +26,36 @@ export function Modal({
   onConfirm,
   isLoading,
 }:ModalProps) {
-  const modalRoot = document.getElementById('modal-root');
-  const newElement = document.createElement('div');
-
-  useEffect(() => {
-    modalRoot?.appendChild(newElement);
-  });
-
   if (!visible) {
     return null;
   }
 
-  return ReactDOM.createPortal(
-    <Overlay>
-      <Container danger={danger}>
-        <h1>
-          {title}
-        </h1>
-        <div className="modal-body">
-          {children}
-        </div>
+  return (
+    <ReactPortal>
+      <Overlay>
+        <Container danger={danger}>
+          <h1>
+            {title}
+          </h1>
+          <div className="modal-body">
+            {children}
+          </div>
 
-        <Footer>
-          <button
-            type="button"
-            className="cancel-button"
-            onClick={onCancel}
-            disabled={isLoading}
-          >
-            {cancelLabel ?? 'Cancelar'}
-          </button>
-          <Button type="button" danger onClick={onConfirm} isLoading={isLoading}>
-            {confirmLabel ?? 'Confirmar'}
-          </Button>
-        </Footer>
-      </Container>
-    </Overlay>,
-    newElement,
+          <Footer>
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={onCancel}
+              disabled={isLoading}
+            >
+              {cancelLabel ?? 'Cancelar'}
+            </button>
+            <Button type="button" danger onClick={onConfirm} isLoading={isLoading}>
+              {confirmLabel ?? 'Confirmar'}
+            </Button>
+          </Footer>
+        </Container>
+      </Overlay>
+    </ReactPortal>
   );
 }
