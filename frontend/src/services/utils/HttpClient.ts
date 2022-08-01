@@ -60,6 +60,21 @@ class HttpClient {
       headers: options?.headers,
     });
   }
+
+  put(path: string, options:any) {
+    return this.makeRequest(path, {
+      method: 'PUT',
+      body: options?.body,
+      headers: options?.headers,
+    });
+  }
+
+  delete(path: string, options?:any) {
+    return this.makeRequest(path, {
+      method: 'DELETE',
+      headers: options?.headers,
+    });
+  }
 }
 
 export default HttpClient;

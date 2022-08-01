@@ -20,6 +20,11 @@ interface ContactFormProps {
   onSubmit: (formData:Contact) => void;
 }
 
+export interface ContactFormRef{
+  setFieldsValues: (contact:Contact) => void
+  resetFields: () => void
+}
+
 export const ContactForm = forwardRef((
   {
     buttonLabel,
@@ -43,10 +48,16 @@ export const ContactForm = forwardRef((
 
   useImperativeHandle(ref, () => ({
     setFieldsValues: (contact:Contact) => {
-      setName(contact.name);
-      setEmail(contact.email || '');
-      setPhone(contact.phone || '');
-      setCategoryId(contact.category_id || '');
+      setName(contact.name ?? '');
+      setEmail(contact.email ?? '');
+      setPhone(formatPhone(contact.phone ?? ''));
+      setCategoryId(contact.category_id ?? '');
+    },
+    resetFields: () => {
+      setName('');
+      setEmail('');
+      setPhone('');
+      setCategoryId('');
     },
   }), []);
 
@@ -98,10 +109,6 @@ export const ContactForm = forwardRef((
     });
 
     setIsSubmitting(false);
-    setName('');
-    setEmail('');
-    setPhone('');
-    setCategoryId('');
   }
 
   return (

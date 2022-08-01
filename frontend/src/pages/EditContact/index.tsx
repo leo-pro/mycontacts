@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { ContactForm } from '../../components/ContactForm';
+import { ContactForm, ContactFormRef } from '../../components/ContactForm';
 import { Loader } from '../../components/Loader';
 import { PageHeader } from '../../components/PageHeader';
 import { Contact } from '../../interfaces/Contact';
@@ -8,12 +8,9 @@ import { ToastType } from '../../interfaces/Toast';
 import ContactsService from '../../services/ContactsService';
 import { toast } from '../../utils/toast';
 
-interface ContactFormRef{
-  setFieldsValues: (contact:Contact) => void
-}
-
 export default function EditContact() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [contactName, setContactName] = useState<string>('');
 
   const contactFormRef = useRef<ContactFormRef>(null);
 
@@ -30,6 +27,7 @@ export default function EditContact() {
         contactFormRef.current?.setFieldsValues(contactData);
 
         setIsLoading(false);
+        setContactName(contactData?.name);
       } catch {
         history.push('/');
         toast({
@@ -42,15 +40,37 @@ export default function EditContact() {
     loadContacts();
   }, [id, history]);
 
-  function handleSubmit() {
-    //
+  async function handleSubmit(formData:Contact) {
+    try {
+      const contact:Contact = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        category_id: formData.category_id,
+      };
+
+      const contactData = await ContactsService.updateContact(id, contact);
+
+      setContactName(contactData?.name);
+
+      toast({
+        type: ToastType.SUCCESS,
+        text: 'Contato alterado com sucesso!',
+        duration: 3000,
+      });
+    } catch {
+      toast({
+        type: ToastType.DANGER,
+        text: 'Ocorreu um erro ao cadastrar o contato!',
+      });
+    }
   }
 
   return (
     <>
       <Loader isLoading={isLoading} />
 
-      <PageHeader title="Editar contato" />
+      <PageHeader title={isLoading ? 'Carregando...' : `Editar ${contactName}`} />
 
       <ContactForm
         ref={contactFormRef}

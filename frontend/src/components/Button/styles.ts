@@ -46,4 +46,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
       }
     `
   )}
+
+  &[disabled]{
+    background: #ccc !important;
+    cursor: default !important;
+  }
 `;
