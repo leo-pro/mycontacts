@@ -7,6 +7,7 @@ import GlobalStyle from '../../assets/styles/global';
 import defaultTheme from '../../assets/styles/themes/default';
 import ToastContainer from '../Toast/ToastContainer';
 import AppRoutes from '../../Routes';
+import { Footer } from '../Footer';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Container>
           <Header />
           <AppRoutes />
+          <Footer />
         </Container>
       </ThemeProvider>
     </BrowserRouter>
