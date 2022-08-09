@@ -5,10 +5,11 @@ export const Container = styled.footer`
   height: 64px;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
-  margin-top: 34px;
+  margin-top: 32px;
+  margin-bottom: 16px;
 
   font-size: 18px;
   color: ${({ theme }) => theme.colors.gray[200]};
