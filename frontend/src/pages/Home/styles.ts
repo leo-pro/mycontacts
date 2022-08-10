@@ -12,7 +12,8 @@ export const InputSearchContainer = styled.div`
     width: 100%;
     height: 50px;
 
-    background: #fff;
+    background: ${({ theme }) => theme.colors.input.background};
+    color: ${({ theme }) => theme.colors.input.text};
     border: none;
     border-radius: 25px;
 
@@ -22,7 +23,7 @@ export const InputSearchContainer = styled.div`
 
     padding: 0px 16px;
     &::placeholder{
-      color: #bcbcbc;
+      color: ${({ theme }) => theme.colors.input.placeholder};
     }
   }
 `;
@@ -41,6 +42,7 @@ export const Header = styled.header<HeaderProps>`
 
   strong {
     font-size: 24px;
+    color: ${({ theme }) => theme.colors.text.main}
   }
 
   a{
@@ -106,7 +108,7 @@ export const ErrorContainer = styled.div`
 `;
 
 export const Card = styled.div`
-  background: #fff;
+  background: ${({ theme }) => theme.colors.card.background};
   box-shadow: 0px 4px 10px rgba(0,0,0,0.04);
   padding: 16px;
   border-radius: 4px;
@@ -122,6 +124,10 @@ export const Card = styled.div`
     .contact-name{
       display: flex;
       align-items: center;
+
+      strong{
+        color: ${({ theme }) => theme.colors.card.title} !important;
+      }
 
       small{
         background: ${({ theme }) => theme.colors.primary.lighter};

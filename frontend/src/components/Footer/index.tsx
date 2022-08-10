@@ -29,7 +29,7 @@ export function Footer() {
         </a>
       </span>
       <Select
-        style={{ width: '150px', height: '45px' }}
+        style={{ width: '120px', height: '36px' }}
         value={themeSelected}
         onChange={(event) => handleChangeThemeSelected(event.target.value)}
       >

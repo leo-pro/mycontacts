@@ -8,6 +8,8 @@ export const Container = styled.div`
     align-items: center;
     text-decoration: none;
 
+    margin-bottom: 12px;
+
     span{
       font-weight: bold;
       color: ${({ theme }) => theme.colors.primary.main};

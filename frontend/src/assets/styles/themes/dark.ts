@@ -20,5 +20,21 @@ export default {
     success: {
       main: '#51CA73',
     },
+    text: {
+      light: '#ffffff',
+      main: '#ffffff',
+      strong: '#ffffff',
+      white: '#ffffff',
+    },
+    card: {
+      background: '#272727',
+      title: '#ffffff',
+    },
+    input: {
+      background: '#272727',
+      text: '#ffffff',
+      placeholder: '#bcbcbc',
+      border: '#454545',
+    },
   },
 };

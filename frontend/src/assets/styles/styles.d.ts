@@ -22,7 +22,23 @@ declare module 'styled-components'{
       },
       success: {
         main: string,
-      }
+      },
+      text:{
+        light: string,
+        main: string,
+        strong: string,
+        white: string,
+      },
+      card: {
+        background: string,
+        title: string,
+      },
+      input:{
+        background: string,
+        text: string,
+        placeholder: string,
+        border: string,
+      },
     }
   }
 

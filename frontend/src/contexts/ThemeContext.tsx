@@ -4,6 +4,7 @@ import {
 import { ThemeProvider as ThemeStyledProvider } from 'styled-components';
 
 import themes from '../assets/styles/themes';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 interface ThemeContextData {
   handleToggleTheme: (themeSelected: string) => void
@@ -18,9 +19,11 @@ interface ThemeProviderProps {
 
 export function ThemeProvider({ children }:ThemeProviderProps) {
   const [theme, setTheme] = useState('light');
+  const [storageTheme, setStorageTheme] = useLocalStorage('MyContacts:theme', theme);
 
   const handleToggleTheme = (themeSelected: string) => {
     setTheme(themeSelected);
+    setStorageTheme(themeSelected);
   };
 
   const currentTheme = useMemo(() => (
