@@ -1,5 +1,5 @@
 import {
-  createContext, ReactNode, useMemo, useState,
+  createContext, ReactNode, useLayoutEffect, useMemo, useState,
 } from 'react';
 import { ThemeProvider as ThemeStyledProvider } from 'styled-components';
 
@@ -18,8 +18,15 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }:ThemeProviderProps) {
-  const [theme, setTheme] = useState('light');
-  const [storageTheme, setStorageTheme] = useLocalStorage('MyContacts:theme', theme);
+  const [storageTheme, setStorageTheme] = useLocalStorage('MyContacts:theme', '');
+
+  const [theme, setTheme] = useState<string>('');
+
+  console.log(theme);
+
+  useLayoutEffect(() => {
+    setTheme(storageTheme || 'light');
+  }, [storageTheme]);
 
   const handleToggleTheme = (themeSelected: string) => {
     setTheme(themeSelected);

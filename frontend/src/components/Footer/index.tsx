@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import Select from '../Select';
 import { Container } from './styles';
@@ -6,7 +6,11 @@ import { Container } from './styles';
 export function Footer() {
   const { theme, handleToggleTheme } = useContext(ThemeContext);
 
-  const [themeSelected, setThemeSelected] = useState<string>(theme);
+  const [themeSelected, setThemeSelected] = useState<string>('light');
+
+  useEffect(() => {
+    setThemeSelected(theme);
+  }, [theme]);
 
   function handleChangeThemeSelected(value: string) {
     setThemeSelected(value);
