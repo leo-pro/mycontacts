@@ -36,5 +36,8 @@ export default {
       placeholder: '#bcbcbc',
       border: '#ffffff',
     },
+    loader: {
+      background: 'rgba(246, 245, 252, 0.7)',
+    },
   },
 };

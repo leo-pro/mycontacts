@@ -39,6 +39,9 @@ declare module 'styled-components'{
         placeholder: string,
         border: string,
       },
+      loader: {
+        background: string,
+      }
     }
   }
 
