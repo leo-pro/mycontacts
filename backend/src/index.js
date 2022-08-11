@@ -15,6 +15,6 @@ app.use(routes);
 
 app.use(errorHandler);
 
-app.listen(3001, () =>
+app.listen(process.env.PORT || 3001, () =>
   console.log("🔥 Server started at http://localhost:3001")
 );
