@@ -10,8 +10,8 @@
     "npm": "8.5.5"
   },
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "dev": "NODE_ENV=development nodemon src/index.js",
+    "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED='0' node src/index.js"
   },
   "dependencies": {
     "dotenv": "^16.0.1",
