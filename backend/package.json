@@ -5,10 +5,15 @@
   "main": "src/index.js",
   "author": "Leonardo Alves",
   "license": "MIT",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.5.5"
+  },
   "scripts": {
     "dev": "nodemon src/index.js"
   },
   "dependencies": {
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
     "pg": "^8.7.3"

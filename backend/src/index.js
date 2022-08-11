@@ -1,6 +1,8 @@
 const express = require("express");
 require("express-async-errors");
 
+require("dotenv").config();
+
 const cors = require("./app/middlewares/cors");
 const errorHandler = require("./app/middlewares/errorHandler");
 const routes = require("./routes");
