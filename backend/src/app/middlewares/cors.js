@@ -4,7 +4,7 @@ module.exports = (request, response, next) => {
     `${
       process.env.NODE_ENV === "development"
         ? "http://localhost:3000"
-        : "https://mycontacts-reactjs.vercel.app/"
+        : "https://mycontacts-reactjs.vercel.app"
     }`
   );
   response.setHeader("Access-Control-Allow-Methods", "*");
