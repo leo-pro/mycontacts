@@ -22,8 +22,6 @@ export function ThemeProvider({ children }:ThemeProviderProps) {
 
   const [theme, setTheme] = useState<string>('');
 
-  console.log(theme);
-
   useLayoutEffect(() => {
     setTheme(storageTheme || 'light');
   }, [storageTheme]);
