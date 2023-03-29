@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 export enum FormFields{
   NAME = 'name',
@@ -15,21 +15,21 @@ interface ContactFormErrors{
 export default function useErrors() {
   const [errors, setErrors] = useState<Array<ContactFormErrors>>([]);
 
-  function setError({ field, message }:ContactFormErrors) {
+  const setError = useCallback(({ field, message }:ContactFormErrors) => {
     const errorAlreadyExists = errors.find((error) => error.field === FormFields.EMAIL);
 
     if (errorAlreadyExists) return;
 
     setErrors((prevState) => [...prevState, { field, message }]);
-  }
+  }, [errors]);
 
-  function removeError(fieldName: FormFields) {
+  const removeError = useCallback((fieldName: FormFields) => {
     setErrors((prevState) => prevState.filter((error) => error.field !== fieldName));
-  }
+  }, []);
 
-  function getErrorsMessageByFieldName(fieldName: FormFields) {
-    return errors.find((error) => error.field === fieldName)?.message;
-  }
+  const getErrorsMessageByFieldName = useCallback((fieldName: FormFields) => (
+    errors.find((error) => error.field === fieldName)?.message
+  ), [errors]);
 
   return {
     setError,
