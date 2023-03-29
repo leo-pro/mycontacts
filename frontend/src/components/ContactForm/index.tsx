@@ -51,7 +51,7 @@ export const ContactForm = forwardRef((
       setName(contact.name ?? '');
       setEmail(contact.email ?? '');
       setPhone(formatPhone(contact.phone ?? ''));
-      setCategoryId(contact.category_id ?? '');
+      setCategoryId(contact.category?.id ?? '');
     },
     resetFields: () => {
       setName('');
@@ -103,9 +103,8 @@ export const ContactForm = forwardRef((
     event.preventDefault();
 
     setIsSubmitting(true);
-
     await onSubmit({
-      name, email, phone, category_id: categoryId,
+      name, email, phone, category: { id: categoryId },
     });
 
     setIsSubmitting(false);

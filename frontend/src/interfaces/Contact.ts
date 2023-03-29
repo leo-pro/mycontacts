@@ -3,5 +3,8 @@ export interface Contact {
   name: string
   email?: string
   phone?: string
-  category_id?: string
+  category?: {
+    id?: string
+    name?: string
+  }
 }

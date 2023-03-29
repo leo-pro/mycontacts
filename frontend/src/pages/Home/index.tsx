@@ -27,15 +27,7 @@ import magnifierQuestion from '../../assets/images/magnifier-question.svg';
 import { Modal } from '../../components/Modal';
 import { toast } from '../../utils/toast';
 import { ToastType } from '../../interfaces/Toast';
-
-interface Contact{
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  category_name: string;
-  category_id: string;
-}
+import { Contact } from '../../interfaces/Contact';
 
 export default function Home() {
   const [contacts, setContacts] = useState<Contact[]>([]);
@@ -212,9 +204,9 @@ export default function Home() {
                   <strong>
                     {contact.name}
                   </strong>
-                  {contact.category_name && (
+                  {contact.category?.name && (
                   <small>
-                    {contact.category_name}
+                    {contact.category.name}
                   </small>
                   )}
                 </div>
