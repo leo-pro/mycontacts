@@ -1,7 +1,9 @@
+/* eslint-disable spaced-comment */
 import { ReactNode } from 'react';
 import Button from '../Button';
 import ReactPortal from '../ReactPortal';
 import { Container, Footer, Overlay } from './styles';
+import useAnimatedUnmount from '../../hooks/useAnimatedUnmount';
 
 interface ModalProps {
   danger?: boolean
@@ -26,14 +28,16 @@ export function Modal({
   onConfirm,
   isLoading,
 }:ModalProps) {
-  if (!visible) {
+  const { shouldRender, animatedElementRef } = useAnimatedUnmount(visible);
+
+  if (!shouldRender) {
     return null;
   }
 
   return (
     <ReactPortal>
-      <Overlay>
-        <Container danger={danger}>
+      <Overlay isLeaving={!visible} ref={animatedElementRef}>
+        <Container danger={danger} isLeaving={!visible}>
           <h1>
             {title}
           </h1>
