@@ -35,12 +35,19 @@ export default function Home() {
     quantityOfFilteredContacts,
   } = useHome();
 
+  const hasContacts = contacts.length > 0;
+  const isListEmpty = !hasError && (!isLoading && !hasContacts);
+  const isSearchEmpty = !hasError && (hasContacts && filteredContacts.length < 1);
+
   return (
     <Container>
       <Loader isLoading={isLoading} />
 
-      {contacts.length > 0 && (
-        <InputSearch searchTerm={searchTerm} onChange={(event) => handleChangeSearchTerm(event)} />
+      {hasContacts && (
+        <InputSearch
+          searchTerm={searchTerm}
+          onChange={(event) => handleChangeSearchTerm(event)}
+        />
       )}
 
       <Header
@@ -49,21 +56,12 @@ export default function Home() {
         quantityOfFilteredContacts={quantityOfFilteredContacts}
       />
 
-      {hasError
-          && (
-            <ErrorStatus onTryAgain={handleTryAgain} />
-          )}
+      {hasError && <ErrorStatus onTryAgain={handleTryAgain} />}
+      {isListEmpty && <EmptyList />}
+      {isSearchEmpty && <SearchNotFound searchTerm={searchTerm} />}
 
-      {!hasError && (
+      {hasContacts && (
         <>
-          {(quantityOfContacts < 1 && !isLoading) && (
-            <EmptyList />
-          )}
-
-          {(quantityOfContacts > 0 && quantityOfFilteredContacts < 1) && (
-            <SearchNotFound searchTerm={searchTerm} />
-          )}
-
           <ContactsList
             filteredContacts={filteredContacts}
             onDeleteContact={handleDeleteContact}
@@ -74,7 +72,9 @@ export default function Home() {
           <Modal
             danger
             visible={isDeleteModalVisible}
-            title={`Tem certeza que deseja excluir o contato "${contactBeingDeleted?.name}"?`}
+            title={
+              `Tem certeza que deseja excluir o contato "${contactBeingDeleted?.name}"?`
+            }
             confirmLabel="Deletar"
             onCancel={handleCloseDeleteModal}
             onConfirm={handleConfirmDeleteContact}
