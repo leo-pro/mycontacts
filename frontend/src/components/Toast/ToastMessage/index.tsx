@@ -1,18 +1,22 @@
-import { useEffect } from 'react';
+import { RefObject, memo, useEffect } from 'react';
 import { Container } from './styles';
 
 import checkCircleIcon from '../../../assets/images/icons/check-circle.svg';
 import xCircleIcon from '../../../assets/images/icons/x-circle.svg';
 import { ToastMessages, ToastType } from '../../../interfaces/Toast';
 
-interface ToastMessageProps{
+export interface ToastMessageProps{
   message: ToastMessages
-  onRemoveMessage: (id?: string | number) => void
+  onRemoveMessage: (id?: number) => void
+  isLeaving: boolean
+  animatedRef: RefObject<HTMLDivElement>
 }
 
-export function ToastMessage({
+function ToastMessage({
   message,
   onRemoveMessage,
+  isLeaving,
+  animatedRef,
 }:ToastMessageProps) {
   const DEFAULT_TIME_TO_REMOVE_TOAST = 7000; // in milliseconds
 
@@ -26,7 +30,7 @@ export function ToastMessage({
     };
   }, [message, onRemoveMessage]);
 
-  function handleRemoveToast(id?: string | number) {
+  function handleRemoveToast(id?: number) {
     onRemoveMessage(id);
   }
 
@@ -36,6 +40,8 @@ export function ToastMessage({
       onClick={() => handleRemoveToast(message.id)}
       tabIndex={0}
       role="button"
+      isLeaving={isLeaving}
+      ref={animatedRef}
     >
       {message.type === ToastType.DANGER && <img src={xCircleIcon} alt="danger" />}
       {message.type === ToastType.SUCCESS && <img src={checkCircleIcon} alt="success" />}
@@ -45,3 +51,5 @@ export function ToastMessage({
     </Container>
   );
 }
+
+export default memo(ToastMessage);
