@@ -38,6 +38,7 @@
     "no-empty": ["error", {"allowEmptyCatch": true}],
     "brace-style": "warn",
     "react/jsx-props-no-spreading": ["off", {"html": "ignore", "custom": "ignore"}],
-    "react/jsx-no-bind": "off"
+    "react/jsx-no-bind": "off",
+    "react/no-unused-prop-types": "warn"
   }
 }
