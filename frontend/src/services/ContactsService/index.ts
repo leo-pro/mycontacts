@@ -11,7 +11,7 @@ class ContactsService {
   httpClient: HttpClient;
 
   constructor() {
-    this.httpClient = new HttpClient(`${process.env.REACT_APP_API_URL}`);
+    this.httpClient = new HttpClient(`${import.meta.env.VITE_APP_API_URL}`);
   }
 
   async listContacts(orderBy:OrderBy = OrderBy.ASC) {
